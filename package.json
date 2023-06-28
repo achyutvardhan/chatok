@@ -16,5 +16,14 @@
   "bugs": {
     "url": "https://github.com/achyutvardhan/chatok/issues"
   },
-  "homepage": "https://github.com/achyutvardhan/chatok#readme"
+  "homepage": "https://github.com/achyutvardhan/chatok#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
 }
