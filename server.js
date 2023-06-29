@@ -21,6 +21,8 @@ db.on('error', (error) => {
   //**********************Sing Up*****************************
   app.use('/',require('./routes/authentication/signup/singup'))
 
+  //**********************authorization*****************************
+  app.use('/', require('./routes/authentication/authorization/protected'))
 
 app.get('*',(req,res)=>{
     res.send("page doesn't exist");
