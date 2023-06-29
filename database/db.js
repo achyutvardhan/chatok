@@ -19,6 +19,9 @@ const userSchema = new mongoose.Schema({
     },
     alt_email:{
         type: String,
+    },
+    token:{
+      type:String
     }
     // Add other relevant user fields here
   });
