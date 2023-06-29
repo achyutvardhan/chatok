@@ -10,7 +10,7 @@ const singup = async(req,res)=>{
         return res.status(400).json({errors : errors.array()})
     }
     try {
-        const {password,email,alt_email,full_name,age, gender,father_name, marital_status,phone_no, alt_phone_no, profession} =req.body;
+        const {password,email,alt_email,full_name,age, gender,father_name, marital_status,marital_date,phone_no, alt_phone_no, profession} =req.body;
         const existingUser = await User.findOne({email});
         if(existingUser)
         {
@@ -32,21 +32,21 @@ const singup = async(req,res)=>{
             email : email,
             alt_email : alt_email,
         });
+        
+        const userdetails = new UserDetails({
+            user_id: user._id,
+            full_name,
+            age,
+            gender,
+            profession,
+            father_name,
+            marital_status,
+            marital_date,
+            phone_no,
+            alt_phone_no,
+        })
+        
        await user.save();
-
-       const userdetails = new UserDetails({
-        user_id: user._id,
-        full_name,
-        age,
-        gender,
-        profession,
-        father_name,
-        marital_status,
-        marital_date,
-        phone_no,
-        alt_phone_no,
-       })
-
        await userdetails.save();
        res.status(201).json({ message: 'User created successfully' });
 

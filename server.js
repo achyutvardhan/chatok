@@ -2,7 +2,6 @@ const express = require('express')
 const app =  express()
 const cors = require('cors')
 const mongoose =  require('mongoose')
-const {User,Message,UserDetails} = require('./database/db')
 app.use(express.json());
 app.use(cors());
 
@@ -16,7 +15,10 @@ db.on('error', (error) => {
     console.log("Connected to mongodb")
   })
 
+  //**********************Sing In*****************************
   app.use('/',require('./routes/authentication/signin/signin'))
+
+  //**********************Sing Up*****************************
   app.use('/',require('./routes/authentication/signup/singup'))
 
 
