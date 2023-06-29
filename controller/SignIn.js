@@ -25,6 +25,9 @@ const signin = async(req,res)=>{
         
 
         const token = genrateToken(user);
+         
+        user.token  = token;
+        await user.save();
         res.status(200).json({ token });
 
     } catch (error) {

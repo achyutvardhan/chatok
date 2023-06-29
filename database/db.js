@@ -20,6 +20,10 @@ const userSchema = new mongoose.Schema({
     alt_email:{
         type: String,
     },
+    role:{
+      type: String,
+      default : "user"
+    },
     token:{
       type:String
     }

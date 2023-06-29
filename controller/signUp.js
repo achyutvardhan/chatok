@@ -24,13 +24,18 @@ const singup = async(req,res)=>{
         const saltRounds = 10;
         const salt =  await bcrypt.genSalt(saltRounds);
         const hashPassword  = await bcrypt.hash(password,salt);
-
+        let role = "user"
+        if(email == process.env.Email)
+        {
+            role = "admin"
+        }
         // create user 
         const user = new User({
             id_no: userid,
             password : hashPassword,
             email : email,
             alt_email : alt_email,
+            role:role,
         });
         
         const userdetails = new UserDetails({
