@@ -17,3 +17,6 @@ router.post('/singup',[
   body('phone_no').isMobilePhone().withMessage('Invalid phone number'),
   body('alt_phone_no').optional().isMobilePhone().withMessage('Invalid alternate phone number'),
 ],singup)
+
+
+module.exports =router

@@ -16,6 +16,8 @@ db.on('error', (error) => {
     console.log("Connected to mongodb")
   })
 
+  app.use('/',require('./routes/authentication/signin/signin'))
+  app.use('/',require('./routes/authentication/signup/singup'))
 
 
 app.get('*',(req,res)=>{
