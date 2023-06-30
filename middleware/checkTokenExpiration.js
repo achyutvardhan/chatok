@@ -1,21 +1,17 @@
 const jwt = require('jsonwebtoken')
-
+const {User}= require('../database/db')
+require('dotenv').config()
 // Middleware function to check token expiration
 const checkTokenExpiration = (req, res, next) => {
-  // Extract the token from the request headers
-  const token = req.headers.authorization?.split(' ')[1];
-
+  const token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({ message: 'No token provided' });
   }
 
   try {
-    // Verify the token
-    const decoded = jwt.verify(token, 'your-secret-key');
+    const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
 
-    // Check if the token has expired
     if (Date.now() >= decoded.exp * 1000) {
-      // Token has expired, update the token in the userSchema
       User.findByIdAndUpdate(decoded.userId, { token: null }, (err) => {
         if (err) {
           console.error('Error updating token:', err);

@@ -39,7 +39,7 @@ const signin = async(req,res)=>{
 
 
 function genrateToken(user) {
-    const token = jwt.sign({uiserId: user._id},process.env.TOKEN_SECRET_KEY,{expiresIn:'1h'});
+    const token = jwt.sign({userId: user._id},process.env.TOKEN_SECRET_KEY,{expiresIn:'1h'});
     return token
 }
 exports.signin = signin

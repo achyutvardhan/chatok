@@ -1,9 +1,9 @@
-
+const jwt = require('jsonwebtoken')
 require('dotenv').config();
 
-const protected = (req, res) => {
+const protected = async(req, res) => {
     // Extract the token from the request headers
-    const token = req.headers.authorization?.split(' ')[1];
+    const token = req.headers.authorization;
 
     if (!token) {
       return res.status(401).json({ message: 'No token provided' });
@@ -14,7 +14,7 @@ const protected = (req, res) => {
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
 
       // Fetch user details from the database based on the decoded userId
-
+         console.log(decoded)
       // Example:
       // const user = await User.findById(decoded.userId);
 
