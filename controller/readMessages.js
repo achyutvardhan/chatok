@@ -58,7 +58,7 @@ const readMessages = async(req, res) => {
 
     } catch (error) {
       console.error('Error accessing protected route:', error);
-      res.status(401).json({ message: 'Invalid token' });
+      res.status(500).json({ message: 'Internal server error' });
     }
   }
 
