@@ -25,6 +25,11 @@ const readMessages = async(req, res) => {
                 sender_id:UserRole._id,
             }]
           }) ;
+          for (let index = 0; index < sentMessage.length; index++) {
+            const id = sentMessage[0]._id;
+            
+            
+          }
          console.log(sentMessage + "sentMesaage")
          console.log(readmessages + "readmessages")
          res.status(200).json({sentMessage, readmessages})
