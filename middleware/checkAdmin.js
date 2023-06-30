@@ -17,7 +17,6 @@ const checkAdmin = async(req, res,next) => {
       //role finder response
       const UserRole = await User.findById(decoded.userId);
       if(UserRole.role == 'admin'){
-      res.status(200).json({message: "admin is authorised"})
       next()
     }
       else

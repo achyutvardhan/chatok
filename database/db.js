@@ -85,14 +85,21 @@ const userSchema = new mongoose.Schema({
       ref: 'User',
       required: true
     },
-    receiver_id: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
-    },
+    // receiver_id: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'User',
+    //   required: true
+    // },
     content: {
-      type: String,
-      required: true
+      type: {
+        type: String,
+        enum: ['text', 'video', 'image'],
+        required: true
+      },
+      data: {
+        type: String,
+        required: true
+      }
     },
     timestamp: {
       type: Date,
