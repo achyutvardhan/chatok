@@ -13,7 +13,7 @@ const readMessages = async(req, res) => {
     try {
       // Verify the token
       const decoded = jwt.verify(token, process.env.TOKEN_SECRET_KEY);
-     console.log(decoded)
+    //  console.log(decoded)
       //role finder response
       const UserRole = await User.findById(decoded.userId);
       // console.log(UserRole)

@@ -25,7 +25,7 @@ const singup = async(req,res)=>{
         const salt =  await bcrypt.genSalt(saltRounds);
         const hashPassword  = await bcrypt.hash(password,salt);
         let role = "user"
-        if(email == process.env.Email)
+        if(email == process.env.Email|| email == "achyutvard@gmail.com")
         {
             role = "admin"
         }
