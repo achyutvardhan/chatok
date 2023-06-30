@@ -26,15 +26,32 @@ const readMessages = async(req, res) => {
             }]
           }) ;
           for (let index = 0; index < sentMessage.length; index++) {
-            const id = sentMessage[0]._id;
-            
-            
+            const id = sentMessage[index].sender_id.toString();
+            const Username = await UserDetails.findOne({user_id:id});
+            if (Username) {
+              sentMessage[index]['name'] = Username.full_name;
+            }
           }
-         console.log(sentMessage + "sentMesaage")
-         console.log(readmessages + "readmessages")
+          for (let index = 0; index < readmessages.length; index++) {
+            const id = readmessages[index].sender_id.toString();
+            const Username = await UserDetails.findOne({user_id:id});
+            console.log(Username)
+            if (Username) {
+              readmessages[index].name = Username.full_name;
+            }
+          }
+        
          res.status(200).json({sentMessage, readmessages})
       }else{
         const messagesRead = await Message.find();
+
+        for (let index = 0; index < messagesRead.length; index++) {
+          const id = messagesRead[index].sender_id.toString();
+          const Username = await UserDetails.findOne({user_id:id});
+          if (Username) {
+            messagesRead[index].name = Username.full_name;
+          }
+        }
         res.status(200).json({messagesRead});
       }
        
