@@ -72,8 +72,9 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
       },
-      alt_phone_no:{
-        type: Number
+    registration_no:{
+        type: Number,
+        required: true,
       }
     // Add other relevant user details fields here
   });

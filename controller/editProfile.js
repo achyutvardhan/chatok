@@ -36,7 +36,7 @@ const editProfile = async(req, res) => {
       user.marital_status = data.marital_status?data.marital_status : user.marital_status;
       user.marital_date = data.marital_date?data.marital_date : user.marital_date;
       user.phone_no = data.phone_no?data.phone_no : user.phone_no;
-      user.alt_phone_no = data.alt_phone_no?data.alt_phone_no : user.alt_phone_no;
+      user.registration_no = data.registration_no?data.registration_no : user.registration_no;
       user.gender = data.gender?data.gender : user.gender;
       await user.save();
       res.status(200).json({ message: 'user Details updated' });

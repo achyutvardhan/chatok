@@ -19,7 +19,7 @@ router.delete('/deleteMessage',checkAdmin,deleteMessage)
 router.put('/edit/profile',[
     body('marital_status').isIn(['married', 'unmarried']).withMessage('Invalid marital status'),
     body('phone_no').isMobilePhone().withMessage('Invalid phone number'),
-    body('alt_phone_no').optional().isMobilePhone().withMessage('Invalid alternate phone number'),
+    body('registration_no').notEmpty().withMessage('Registration Number is required'),
     body('gender').isIn(['Male', 'Female', 'Other']).withMessage('Invalid gender'),
     body('profession').isIn(['Advocate', 'CA']).withMessage('Invalid profession'),
 ],editProfile)

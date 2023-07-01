@@ -10,7 +10,7 @@ const singup = async(req,res)=>{
         return res.status(400).json({errors : errors.array()})
     }
     try {
-        const {password,email,alt_email,full_name,age, gender,father_name, marital_status,marital_date,phone_no, alt_phone_no, profession} =req.body;
+        const {password,email,alt_email,full_name,age, gender,father_name, marital_status,marital_date,phone_no, registration_no, profession} =req.body;
         const existingUser = await User.findOne({email});
         if(existingUser)
         {
@@ -48,7 +48,7 @@ const singup = async(req,res)=>{
             marital_status,
             marital_date,
             phone_no,
-            alt_phone_no,
+            registration_no,
         })
         
        await user.save();

@@ -13,7 +13,7 @@ router.post('/signup',[
   body('father_name').notEmpty().withMessage('Father name is required'),
   body('marital_status').isIn(['married', 'unmarried']).withMessage('Invalid marital status'),
   body('phone_no').isMobilePhone().withMessage('Invalid phone number'),
-  body('alt_phone_no').optional().isMobilePhone().withMessage('Invalid alternate phone number'),
+  body('registration_no').notEmpty().withMessage('Registration Number is required'),
 ],singup)
 
 
