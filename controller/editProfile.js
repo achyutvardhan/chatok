@@ -38,7 +38,8 @@ const editProfile = async(req, res) => {
       user.phone_no = data.phone_no?data.phone_no : user.phone_no;
       user.alt_phone_no = data.alt_phone_no?data.alt_phone_no : user.alt_phone_no;
       user.gender = data.gender?data.gender : user.gender;
-      res.status(200).json({ message: 'Protected route accessed successfully' });
+      await user.save();
+      res.status(200).json({ message: 'user Details updated' });
     } catch (error) {
       console.error('Error accessing protected route:', error);
       res.status(401).json({ message: 'Invalid token' });
