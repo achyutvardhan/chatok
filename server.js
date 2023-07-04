@@ -24,6 +24,9 @@ db.on('error', (error) => {
   //**********************authorization*****************************
   app.use('/', require('./routes/authentication/authorization/protected'))
 
+  //**********************Forget Password*****************************
+  app.use('/',require('./routes/authentication/resetPassword/forgetPassword'))
+
 app.get('*',(req,res)=>{
     res.send("page doesn't exist");
 })
