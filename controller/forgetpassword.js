@@ -3,16 +3,9 @@ const {sendMail} = require('../mail/mailer')
 
 
 const deletePasscodeAfterDelay = (email,Type, delay) => {
-    setTimeout(() => {
-        Passcode.deleteOne({ email: email, code_type: Type}, (err) => {
-            if (err) {
-              console.error('Error deleting document:', err);
-              // Handle the error
-            } else {
-              console.log('Document deleted successfully');
-              // Handle the success
-            }
-          });
+    setTimeout(async() => {
+        await Passcode.deleteOne({ email: email, code_type: Type});
+        console.log("passcode deleted auto")
     }, delay);
   };
 
@@ -26,7 +19,7 @@ const forgetPassword = async(req,res)=>{
        return res.status(404).json({ message: 'User not found' }); 
       }
       const passcode  = Math.floor(100000 + Math.random() * 900000);
-      const expirationTime = Date.now() + 10 * 60 * 1000;
+      const expirationTime = Date.now() + 2 * 60 * 1000;
       const mail = {
         to : email,
         subject : `Password Reset Passcode `,
@@ -41,7 +34,7 @@ const forgetPassword = async(req,res)=>{
         expiration:expirationTime
        })
        await Pass.save();
-       deletePasscodeAfterDelay(email,'reset', 10 * 60 * 1000);
+       deletePasscodeAfterDelay(email,'reset', 2 * 60 * 1000);
        res.status(200).json("verification code sent");
    } catch (error) {
     console.error('Error accessing forget Password routes:', error);
