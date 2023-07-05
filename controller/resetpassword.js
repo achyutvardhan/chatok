@@ -8,7 +8,9 @@ const resetPassword = async(req,res)=>{
         const user  =  await User.findOne({email:email});
         if(!user){
        return res.status(404).json({ message: 'User not found' }); }
-
+        const find = await Passcode.findOne({email:email,code_type:'reset'});
+        if(!find){
+            return res.status(404).json({ message: 'User reset request not found' }); }
        // password hasing
        const saltRounds = 10;
         const salt =  await bcrypt.genSalt(saltRounds);
@@ -20,6 +22,12 @@ const resetPassword = async(req,res)=>{
         console.log("passcode deleted")
         else
         console.log("passcode not deleted")
+        const mail = {
+            to : email,
+            subject : `Password changed `,
+            text : `Your password has changed successfully`
+           };
+           console.log(await sendMail(mail));
         res.status(200).json({message: "New password saved "});
 
     } catch (error) {

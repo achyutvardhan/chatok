@@ -19,7 +19,7 @@ const deletePasscodeAfterDelay = (email,Type, delay) => {
   
 const forgetPassword = async(req,res)=>{
    try {
-      const email = req.body;
+      const {email} = req.body;
       const user = await User.findOne({email:email});
       if(!user)
       {
@@ -33,15 +33,15 @@ const forgetPassword = async(req,res)=>{
         text : `your verification pin : ${passcode}`
        };
        console.log(await sendMail(mail));
-       
+       const reset = 'reset';
        const Pass = new Passcode({
         email:email,
-        passcode,
-        reset,
-        expirationTime
+        code: passcode,
+        code_type:reset,
+        expiration:expirationTime
        })
        await Pass.save();
-       deletePasscodeAfterDelay(email,reset, 10 * 60 * 1000);
+       deletePasscodeAfterDelay(email,'reset', 10 * 60 * 1000);
        res.status(200).json("verification code sent");
    } catch (error) {
     console.error('Error accessing forget Password routes:', error);

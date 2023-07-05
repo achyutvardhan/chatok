@@ -3,6 +3,10 @@ const {User}= require('../database/db')
 require('dotenv').config()
 // Middleware function to check token expiration
 const checkTokenExpiration = (req, res, next) => {
+
+  if (req.path === '/forgetpassword'|| req.path === '/passwordverify' || req.path === '/resetpassword') {
+    return next(); // Skip middleware for the forgot password route
+  }
   const token = req.headers.authorization;
   if (!token) {
     return res.status(401).json({ message: 'No token provided' });
