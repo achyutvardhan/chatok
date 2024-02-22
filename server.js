@@ -5,7 +5,7 @@ const mongoose =  require('mongoose')
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://achyutvardhan:dUXPEufe4d5BtIgr@cluster0.cta42v1.mongodb.net/chatok");
+mongoose.connect(process.env.mongodbUrl);
 
 const db = mongoose.connection;
 db.on('error', (error) => {
